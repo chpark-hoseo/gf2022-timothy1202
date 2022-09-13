@@ -1,0 +1,5 @@
+﻿빌드 시작...
+1>------ 빌드 시작: 프로젝트: HoseoSDL, 구성: Debug x64 ------
+1>main.cpp
+1>HoseoSDL.vcxproj -> C:\Users\박광훈\Documents\GitHub\gf2022-timothy1202\x64\Debug\HoseoSDL.exe
+========== 빌드: 성공 1, 실패 0, 최신 0, 생략 0 ==========
