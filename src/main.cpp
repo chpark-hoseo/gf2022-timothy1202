@@ -7,6 +7,41 @@ SDL_Window* g_pWindow = 0;
 SDL_Renderer* g_pRenderer = 0;
 bool g_bRunning = false; // 값이 제대로 들어가면 창을 실행시키고 값이 잘못되었으면 무한루프
 
+//과제 1
+bool init(const char* title, int xpos, int ypos, int height, int width, int flags); //init 함수선언
+void render();//render 함수선언
+void update(); //update 함수선언
+
+int main(int argc, char* argv[])
+{
+    int num = 0;
+    if (init("Breaking Up HelloSDL", SDL_WINDOWPOS_CENTERED,
+        SDL_WINDOWPOS_CENTERED, 640, 480,
+        SDL_WINDOW_SHOWN))
+    {
+        g_bRunning = true;
+    }
+    else
+    {
+        return 1; // something's wrong
+    }
+     
+    while (g_bRunning)
+    {
+        num++;
+        // handle input - update - render
+        update();
+        render();
+        if (num > 3)
+        {
+            g_bRunning = 0;
+        }
+    }
+    
+    SDL_Quit();
+    return 0;
+}
+
 bool init(const char* title, int xpos, int ypos, int height, int width, int flags) //윈도우 / 랜더러 생성 및 초기화
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) >= 0) {
@@ -41,28 +76,4 @@ void update()
 {
     SDL_SetRenderDrawColor(g_pRenderer, rand() % 256, rand() % 256, rand() % 256, 255);
     SDL_Delay(1000);
-}
-
-int main(int argc, char* argv[])
-{
-    if (init("Breaking Up HelloSDL", SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED, 640, 480,
-        SDL_WINDOW_SHOWN))
-    {
-        g_bRunning = true;
-    }
-    else
-    {
-        return 1; // something's wrong
-    }
-     
-    while (g_bRunning)
-    {
-        // handle input - update - render
-        update();
-        render();
-    }
-    
-    SDL_Quit();
-    return 0;
 }
