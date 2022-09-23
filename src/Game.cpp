@@ -47,7 +47,7 @@ bool Game::running()
 void Game::handleEvents()
 {
     SDL_Event event;
-    while (SDL_PollEvent(&event))
+    while (SDL_PollEvent(&event)) // 초기화 값이 0(false)이니까 0이면 입력이 필요해서이다.
     {
         switch (event.type)
         {
