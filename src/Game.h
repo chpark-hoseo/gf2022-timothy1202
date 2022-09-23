@@ -1,3 +1,5 @@
+#ifndef __Game__
+#define __Game__
 #include <SDL2/SDL.h> 
 
 class Game
@@ -18,3 +20,5 @@ private:
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
 };
+
+#endif /* defined(__Game__) */

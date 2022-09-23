@@ -47,7 +47,7 @@ bool Game::running()
 void Game::handleEvents()
 {
     SDL_Event event;
-    if (SDL_PollEvent(&event))
+    while (SDL_PollEvent(&event))
     {
         switch (event.type)
         {
