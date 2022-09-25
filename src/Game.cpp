@@ -1,5 +1,6 @@
 ﻿#include "Game.h"
 
+int dest = 0;
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -38,6 +39,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_destinationRectangle.x = m_sourceRectangle.x = 0;
         m_destinationRectangle.y = m_sourceRectangle.y = 0;
 
+        //m_destinationRectangle.x += 1;
+        //SDL_Delay(5);
     m_bRunning = true;
     return true;
 }
@@ -45,6 +48,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 void Game::update()
 {
     // 게임 데이터 갱신 
+    if (dest==1)
+        m_destinationRectangle.x -= 1;
+    else m_destinationRectangle.x += 1;
+    SDL_Delay(5);
+    if (m_destinationRectangle.x == 517)
+        dest = 1;
+    if (m_destinationRectangle.x == 0)
+        dest = 0;
 }
 
 void Game::render()
