@@ -25,6 +25,20 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         return false; // SDL 초기화 실패
     }
 
+        SDL_Surface* pTempSurface1 = SDL_LoadBMP("Assets/Background.bmp");
+        q_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface1);
+        SDL_FreeSurface(pTempSurface1);
+
+        SDL_QueryTexture(q_pTexture, NULL, NULL,
+            &q_sourceRectangle.w, &q_sourceRectangle.h);
+
+        q_destinationRectangle.w = q_sourceRectangle.w;
+        q_destinationRectangle.h = q_sourceRectangle.h;
+
+        q_destinationRectangle.x = q_sourceRectangle.x = 0;
+        q_destinationRectangle.y = q_sourceRectangle.y = 0;
+
+
         SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/rider.bmp");
 
         m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
@@ -61,6 +75,7 @@ void Game::update()
 void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
+    SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
     SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
     SDL_RenderPresent(m_pRenderer);
 }

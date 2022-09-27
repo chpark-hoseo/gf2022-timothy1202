@@ -26,6 +26,14 @@ private:
 	// 대상 사각형
 	SDL_Rect m_destinationRectangle;
 
+	SDL_Texture* q_pTexture;
+
+	// 원본 사각형
+	SDL_Rect q_sourceRectangle;
+
+	// 대상 사각형
+	SDL_Rect q_destinationRectangle;
+
 	typedef struct SDL_Rect
 	{
 		int x, y;
