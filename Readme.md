@@ -1,5 +1,5 @@
-![Diagram](http://jgraph.github.io/drawio-github/diagram.png)
-
+![Diagram](https://github.com/chpark-hoseo/gf2022-timothy1202/blob/SDL%EA%B8%B0%EB%B3%B8%EA%B7%B8%EB%A6%AC%EA%B8%B0/Game%ED%81%B4%EB%9E%98%EC%8A%A4%ED%99%94.drawio.png
+)
 
 ## replit
 
