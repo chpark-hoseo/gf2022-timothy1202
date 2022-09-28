@@ -12,6 +12,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
             if (m_pRenderer != 0) {
                 SDL_SetRenderDrawColor(
                     m_pRenderer, 255, 255, 255, 255);
+
             }
             else {
                 return false; // 랜더러 생성 실패
@@ -25,6 +26,24 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         return false; // SDL 초기화 실패
     }
 
+    SDL_Rect fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderFillRect(renderer, &fillRect);
+
+    SDL_Rect outlineRect = { SCREEN_WIDTH / 6, SCREEN_HEIGHT / 6, SCREEN_WIDTH * 2 / 3, SCREEN_HEIGHT * 2 / 3 };
+    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+    SDL_RenderDrawRect(renderer, &outlineRect);
+
+    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+    SDL_RenderDrawLine(renderer, 0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2);
+
+    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+
+    for (int i = 0; i < SCREEN_HEIGHT; i += 4)
+    {
+        SDL_RenderDrawPoint(renderer, SCREEN_WIDTH / 2, i);
+    }
+    /*
         SDL_Surface* pTempSurface1 = SDL_LoadBMP("Assets/Background.bmp");
         q_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface1);
         SDL_FreeSurface(pTempSurface1);
@@ -51,7 +70,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_destinationRectangle.h = m_sourceRectangle.h;
 
         m_destinationRectangle.x = m_sourceRectangle.x = 0;
-        m_destinationRectangle.y = m_sourceRectangle.y = 0;
+        m_destinationRectangle.y = m_sourceRectangle.y = 0;*/
 
         //m_destinationRectangle.x += 1;
         //SDL_Delay(5);
