@@ -105,6 +105,8 @@ void Game::clean()
 {
     SDL_DestroyWindow(m_pWindow);
     SDL_DestroyRenderer(m_pRenderer);
+    SDL_DestroyTexture(m_pTexture);
+    SDL_DestroyTexture(q_pTexture);
     SDL_Quit();
 }
 
