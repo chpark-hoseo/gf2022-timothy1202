@@ -57,6 +57,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
         m_destinationRectangle.x = m_sourceRectangle.x = 0;
         m_destinationRectangle.y = m_sourceRectangle.y = 0;
+        m_destinationRectangle.x = 50;
+        m_destinationRectangle.y = 50;
         
         std::cout << "rider.bmp의 w/h: " << m_sourceRectangle.w <<"/"<<m_sourceRectangle.h;
 
