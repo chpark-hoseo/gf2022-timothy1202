@@ -51,13 +51,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_destinationRectangle.w = m_sourceRectangle.w;
         m_destinationRectangle.h = m_sourceRectangle.h;
 
-        m_destinationRectangle.x = m_sourceRectangle.x = 0;
-        m_destinationRectangle.y = m_sourceRectangle.y = 0;
+        m_destinationRectangle.x = m_sourceRectangle.x = 50;
+        m_destinationRectangle.y = m_sourceRectangle.y = 50;
 
         SDL_QueryTexture(m_pTexture, NULL, NULL,
             &m_sourceRectangle.w, &m_sourceRectangle.h);
 
-        m_sourceRectangle.x = -70;
+        m_sourceRectangle.x = -80;
         m_sourceRectangle.y = -60;
         
         std::cout << "rider.bmp의 w/h: " << m_sourceRectangle.x <<"/"<<m_sourceRectangle.y;
