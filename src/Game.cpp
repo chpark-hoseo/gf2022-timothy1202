@@ -41,13 +41,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         */
 
         //SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/rider.bmp");
-        SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/animate.bmp");
+        //SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/animate.bmp"); //애니메이션 실습
+        SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/BlueMan.bmp");
         
         m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
         SDL_FreeSurface(pTempSurface);
 
-        m_sourceRectangle.w = 128;
-        m_sourceRectangle.h = 82;
+        m_sourceRectangle.w = 37.5;
+        m_sourceRectangle.h = 116;
         //SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
 
         m_destinationRectangle.w = m_sourceRectangle.w;
@@ -91,7 +92,7 @@ void Game::update()
     if (m_destinationRectangle.x == 0)
         dest = 0;*/
 
-    m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
+    m_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 500) % 8);
 }
 
 void Game::render()
