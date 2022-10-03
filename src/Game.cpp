@@ -88,8 +88,11 @@ void Game::update()
 void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
+    //angle:돌아가는 각도 , center: 중심점을 지정(돌아가는)
     //SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
     SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+    SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle,
+        NULL, NULL, SDL_FLIP_HORIZONTAL);
     SDL_RenderPresent(m_pRenderer);
 }
 
