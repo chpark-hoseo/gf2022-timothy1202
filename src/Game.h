@@ -21,7 +21,7 @@ private:
 	SDL_Texture* m_pTexture;
 
 	// 원본 사각형
-	SDL_Rect m_sourceRectangle;
+	SDL_Rect  m_sourceRectangle;
 
 	// 대상 사각형
 	SDL_Rect m_destinationRectangle;

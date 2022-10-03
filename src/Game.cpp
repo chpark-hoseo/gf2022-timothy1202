@@ -57,6 +57,22 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_destinationRectangle.x = m_sourceRectangle.x = 0;
         m_destinationRectangle.y = m_sourceRectangle.y = 0;
 
+        SDL_Surface* qTempSurface = SDL_LoadBMP("Assets/BlueMan.bmp");
+
+        q_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, qTempSurface);
+        SDL_FreeSurface(qTempSurface);
+
+        q_sourceRectangle.w = 37.5;
+        q_sourceRectangle.h = 116;
+
+        q_destinationRectangle.w = q_sourceRectangle.w;
+        q_destinationRectangle.h = q_sourceRectangle.h;
+
+        q_destinationRectangle.x = q_sourceRectangle.x = 0;
+        q_destinationRectangle.y = q_sourceRectangle.y = 0;
+        q_destinationRectangle.x = 300;
+
+
        // m_destinationRectangle.w = m_sourceRectangle.w;
        // m_destinationRectangle.h = m_sourceRectangle.h;
        // m_sourceRectangle.w= 640;
@@ -93,6 +109,7 @@ void Game::update()
         dest = 0;*/
 
     m_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 100) % 8);
+    q_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 500) % 8); 
 }
 
 void Game::render()
@@ -100,6 +117,7 @@ void Game::render()
     SDL_RenderClear(m_pRenderer);
     //SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
     SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+    SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
     SDL_RenderPresent(m_pRenderer);
 }
 
