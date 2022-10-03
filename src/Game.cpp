@@ -92,7 +92,7 @@ void Game::update()
     if (m_destinationRectangle.x == 0)
         dest = 0;*/
 
-    m_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 500) % 8);
+    m_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 100) % 8);
 }
 
 void Game::render()
