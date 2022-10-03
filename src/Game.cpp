@@ -40,31 +40,38 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         q_destinationRectangle.y = q_sourceRectangle.y = 0;
         */
 
-        SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/rider.bmp");
-
+        //SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/rider.bmp");
+        SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/animate.bmp");
+        
         m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
         SDL_FreeSurface(pTempSurface);
 
-        SDL_QueryTexture(m_pTexture, NULL, NULL,
-        &m_sourceRectangle.w, &m_sourceRectangle.h);
+        m_sourceRectangle.w = 128;
+        m_sourceRectangle.h = 82;
+        //SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
 
         m_destinationRectangle.w = m_sourceRectangle.w;
         m_destinationRectangle.h = m_sourceRectangle.h;
-       // m_sourceRectangle.w= 640;
-        //m_sourceRectangle.h= 480;
-        m_destinationRectangle.w = 640;
-        m_destinationRectangle.h = 480;
 
         m_destinationRectangle.x = m_sourceRectangle.x = 0;
         m_destinationRectangle.y = m_sourceRectangle.y = 0;
+
+       // m_destinationRectangle.w = m_sourceRectangle.w;
+       // m_destinationRectangle.h = m_sourceRectangle.h;
+       // m_sourceRectangle.w= 640;
+        //m_sourceRectangle.h= 480;
+       // m_destinationRectangle.w = 640;
+        //m_destinationRectangle.h = 480;
+
+       // m_destinationRectangle.x = m_sourceRectangle.x = 0;
+        //m_destinationRectangle.y = m_sourceRectangle.y = 0;
         //m_destinationRectangle.x = 50;
         //m_destinationRectangle.y = 50;
         //m_sourceRectangle.x = 50;
         //m_sourceRectangle.y = 45;
         
-        std::cout << "rider.bmp의 w/h: " << m_sourceRectangle.w <<"/"<<m_sourceRectangle.h;
+       // std::cout << "rider.bmp의 w/h: " << m_sourceRectangle.w <<"/"<<m_sourceRectangle.h;
 
-   
         //m_destinationRectangle.x += 1;
         //SDL_Delay(5);
     m_bRunning = true;
@@ -83,6 +90,8 @@ void Game::update()
         dest = 1;
     if (m_destinationRectangle.x == 0)
         dest = 0;*/
+
+    m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
 }
 
 void Game::render()
