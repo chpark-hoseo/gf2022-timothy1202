@@ -50,17 +50,17 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
         m_destinationRectangle.w = m_sourceRectangle.w;
         m_destinationRectangle.h = m_sourceRectangle.h;
-       // m_sourceRectangle.w= 640;
-        //m_sourceRectangle.h= 480;
-        m_destinationRectangle.w = 640;
-        m_destinationRectangle.h = 480;
+        //m_sourceRectangle.w= 40; // 자를 부분(원본상자)
+        //m_sourceRectangle.h= 80;// 자를 부분(원본상자)
+        //m_destinationRectangle.w = 640; //자른 사진의 크기를 정의(대상상자)
+        //m_destinationRectangle.h = 480; //자른 사진의 크기를 정의(대상상자)
 
         m_destinationRectangle.x = m_sourceRectangle.x = 0;
         m_destinationRectangle.y = m_sourceRectangle.y = 0;
-        //m_destinationRectangle.x = 50;
-        //m_destinationRectangle.y = 50;
-        //m_sourceRectangle.x = 50;
+        //m_sourceRectangle.x = 50; // 원본상자의 (0,0) -> 새로운 좌표로 바꾸는 것
         //m_sourceRectangle.y = 45;
+        //m_destinationRectangle.x = 50; //대상상자를 배치하는 좌표
+        //m_destinationRectangle.y = 50;
         
         std::cout << "rider.bmp의 w/h: " << m_sourceRectangle.w <<"/"<<m_sourceRectangle.h;
 
@@ -91,8 +91,8 @@ void Game::render()
     //angle:돌아가는 각도 , center: 중심점을 지정(돌아가는)
     //SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
     SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
-    SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle,
-        NULL, NULL, SDL_FLIP_HORIZONTAL);
+    //SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle,
+       // NULL, NULL, SDL_FLIP_HORIZONTAL);
     SDL_RenderPresent(m_pRenderer);
 }
 
