@@ -57,7 +57,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_destinationRectangle.x = m_sourceRectangle.x = 0;
         m_destinationRectangle.y = m_sourceRectangle.y = 0;
 
-        SDL_Surface* qTempSurface = SDL_LoadBMP("Assets/BlueMan.bmp");
+        /*SDL_Surface* qTempSurface = SDL_LoadBMP("Assets/BlueMan.bmp"); // 느린 사람
 
         q_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, qTempSurface);
         SDL_FreeSurface(qTempSurface);
@@ -70,7 +70,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
         q_destinationRectangle.x = q_sourceRectangle.x = 0;
         q_destinationRectangle.y = q_sourceRectangle.y = 0;
-        q_destinationRectangle.x = 300;
+        q_destinationRectangle.x = 300;*/
 
 
        // m_destinationRectangle.w = m_sourceRectangle.w;
@@ -107,9 +107,32 @@ void Game::update()
         dest = 1;
     if (m_destinationRectangle.x == 0)
         dest = 0;*/
-
     m_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 100) % 8);
-    q_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 500) % 8); 
+    const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+
+    if (currentKeyStates[SDL_SCANCODE_LEFT])
+
+    {
+        dest = 1;
+        m_destinationRectangle.x -=1;
+        m_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 100) % 8);
+        SDL_Delay(3);
+    }
+
+    else if (currentKeyStates[SDL_SCANCODE_RIGHT])
+
+    {
+        dest = 0;
+        m_destinationRectangle.x += 1;
+        m_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 100) % 8);
+        SDL_Delay(3);
+    }
+
+    else
+    {
+        m_sourceRectangle.x = 0;
+    }
+    //q_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 500) % 8); 
 }
 
 void Game::render()
@@ -117,7 +140,12 @@ void Game::render()
     SDL_RenderClear(m_pRenderer);
     //SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
     SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
-    SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
+    if (dest == 1)
+    {
+        SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle,
+            NULL, NULL, SDL_FLIP_HORIZONTAL);
+    }
+    //SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
     SDL_RenderPresent(m_pRenderer);
 }
 
