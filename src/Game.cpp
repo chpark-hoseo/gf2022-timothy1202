@@ -1,5 +1,6 @@
 ﻿#include "Game.h"
 #include<iostream>
+#include <SDL2/SDL_image.h>
 
 int dest = 0;
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
@@ -11,8 +12,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
             m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 
             if (m_pRenderer != 0) {
-                SDL_SetRenderDrawColor(
-                    m_pRenderer, 255, 255, 255, 255);
+                SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255); // 붉은색 배경
+                //SDL_SetRenderDrawColor(
+                  //  m_pRenderer, 255, 255, 255, 255);
             }
             else {
                 return false; // 랜더러 생성 실패
@@ -42,14 +44,33 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
         //SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/rider.bmp");
         //SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/animate.bmp"); //애니메이션 실습
-        SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/BlueMan.bmp");
-        
+
+
+
+       //SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/animate.bmp");  //SDL_Image 실습1차
+       // m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
+       // SDL_FreeSurface(pTempSurface);
+
+       // SDL_QueryTexture(m_pTexture, NULL, NULL,
+       //     &m_sourceRectangle.w, &m_sourceRectangle.h);
+       // m_sourceRectangle.w = 128;
+       // m_sourceRectangle.h = 82;
+
+       // m_destinationRectangle.w = m_sourceRectangle.w;
+       // m_destinationRectangle.h = m_sourceRectangle.h;
+
+       // m_destinationRectangle.x = m_sourceRectangle.x = 0;
+       // m_destinationRectangle.y = m_sourceRectangle.y = 0;
+
+        SDL_Surface* pTempSurface = IMG_Load("Assets/animate-alpha.png");  // SDL_Image 실습2차
         m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
         SDL_FreeSurface(pTempSurface);
 
-        m_sourceRectangle.w = 37.5;
-        m_sourceRectangle.h = 116;
-        //SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
+        SDL_QueryTexture(m_pTexture, NULL, NULL,
+            &m_sourceRectangle.w, &m_sourceRectangle.h);
+
+        m_sourceRectangle.w = 128;
+        m_sourceRectangle.h = 82;
 
         m_destinationRectangle.w = m_sourceRectangle.w;
         m_destinationRectangle.h = m_sourceRectangle.h;
@@ -57,40 +78,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_destinationRectangle.x = m_sourceRectangle.x = 0;
         m_destinationRectangle.y = m_sourceRectangle.y = 0;
 
-        /*SDL_Surface* qTempSurface = SDL_LoadBMP("Assets/BlueMan.bmp"); // 느린 사람
-
-        q_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, qTempSurface);
-        SDL_FreeSurface(qTempSurface);
-
-        q_sourceRectangle.w = 37.5;
-        q_sourceRectangle.h = 116;
-
-        q_destinationRectangle.w = q_sourceRectangle.w;
-        q_destinationRectangle.h = q_sourceRectangle.h;
-
-        q_destinationRectangle.x = q_sourceRectangle.x = 0;
-        q_destinationRectangle.y = q_sourceRectangle.y = 0;
-        q_destinationRectangle.x = 300;*/
-
-
-       // m_destinationRectangle.w = m_sourceRectangle.w;
-       // m_destinationRectangle.h = m_sourceRectangle.h;
-       // m_sourceRectangle.w= 640;
-        //m_sourceRectangle.h= 480;
-       // m_destinationRectangle.w = 640;
-        //m_destinationRectangle.h = 480;
-
-       // m_destinationRectangle.x = m_sourceRectangle.x = 0;
-        //m_destinationRectangle.y = m_sourceRectangle.y = 0;
-        //m_destinationRectangle.x = 50;
-        //m_destinationRectangle.y = 50;
-        //m_sourceRectangle.x = 50;
-        //m_sourceRectangle.y = 45;
-        
-       // std::cout << "rider.bmp의 w/h: " << m_sourceRectangle.w <<"/"<<m_sourceRectangle.h;
-
-        //m_destinationRectangle.x += 1;
-        //SDL_Delay(5);
     m_bRunning = true;
     return true;
 }
@@ -107,7 +94,7 @@ void Game::update()
         dest = 1;
     if (m_destinationRectangle.x == 0)
         dest = 0;*/
-    m_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 100) % 8);
+    m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
     const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 
     if (currentKeyStates[SDL_SCANCODE_LEFT])
@@ -115,7 +102,7 @@ void Game::update()
     {
         dest = 1;
         m_destinationRectangle.x -=1;
-        m_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 100) % 8);
+        m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
         SDL_Delay(3);
     }
 
@@ -124,7 +111,7 @@ void Game::update()
     {
         dest = 0;
         m_destinationRectangle.x += 1;
-        m_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 100) % 8);
+        m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
         SDL_Delay(3);
     }
 
@@ -132,20 +119,19 @@ void Game::update()
     {
         m_sourceRectangle.x = 0;
     }
-    //q_sourceRectangle.x = 37.5 * ((SDL_GetTicks() / 500) % 8); 
 }
 
 void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
     //SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
-    SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
-    if (dest == 1)
+    if(dest==0)
+        SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+    else if (dest == 1)
     {
         SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle,
             NULL, NULL, SDL_FLIP_HORIZONTAL);
     }
-    //SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
     SDL_RenderPresent(m_pRenderer);
 }
 
