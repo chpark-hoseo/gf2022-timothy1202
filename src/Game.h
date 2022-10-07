@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h> 
+#include "TextureManager.h"
 
 class Game
 {
@@ -15,24 +16,29 @@ public:
 	void clean();
 
 private:
+	TextureManager m_textureManager;
+	int m_currentFrame;
+
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
 	SDL_Texture* m_pTexture;
 
-	// 원본 사각형
-	SDL_Rect  m_sourceRectangle;
+	//원본 사각형
+	//SDL_Rect  m_sourceRectangle;
 
 	// 대상 사각형
-	SDL_Rect m_destinationRectangle;
+	//SDL_Rect m_destinationRectangle;
 
-	SDL_Texture* q_pTexture;
+	//SDL_Texture* q_pTexture;
 
 	// 원본 사각형
-	SDL_Rect q_sourceRectangle;
+	//SDL_Rect q_sourceRectangle;
 
 	// 대상 사각형
-	SDL_Rect q_destinationRectangle;
+	//SDL_Rect q_destinationRectangle;
+
+
 
 	typedef struct SDL_Rect
 	{
