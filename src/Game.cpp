@@ -2,7 +2,8 @@
 #include<iostream>
 #include <SDL2/SDL_image.h>
 
-int dest = 0;
+bool Way = 0;
+int move_x = 0;
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -27,7 +28,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     else {
         return false; // SDL 초기화 실패
     }
-    m_textureManager.load("Assets/animate-alpha.png", "animate", m_pRenderer);
+    m_textureManager.load("Assets/Gioo.png", "animate", m_pRenderer);
 
         // 배경 표출 코드
         /*SDL_Surface* pTempSurface1 = SDL_LoadBMP("Assets/Background.bmp");
@@ -44,41 +45,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         q_destinationRectangle.y = q_sourceRectangle.y = 0;
         */
 
-        //SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/rider.bmp");
-        //SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/animate.bmp"); //애니메이션 실습
-
-
-
-       //SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/animate.bmp");  //SDL_Image 실습1차
-       // m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-       // SDL_FreeSurface(pTempSurface);
-
-       // SDL_QueryTexture(m_pTexture, NULL, NULL,
-       //     &m_sourceRectangle.w, &m_sourceRectangle.h);
-       // m_sourceRectangle.w = 128;
-       // m_sourceRectangle.h = 82;
-
-       // m_destinationRectangle.w = m_sourceRectangle.w;
-       // m_destinationRectangle.h = m_sourceRectangle.h;
-
-       // m_destinationRectangle.x = m_sourceRectangle.x = 0;
-       // m_destinationRectangle.y = m_sourceRectangle.y = 0;
-
-        //SDL_Surface* pTempSurface = IMG_Load("Assets/animate-alpha.png");  // SDL_Image 실습2차
-        //m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-        //SDL_FreeSurface(pTempSurface);
-
-        //SDL_QueryTexture(m_pTexture, NULL, NULL,
-        //    &m_sourceRectangle.w, &m_sourceRectangle.h);
-
-        //m_sourceRectangle.w = 128;
-        //m_sourceRectangle.h = 82;
-
-        //m_destinationRectangle.w = m_sourceRectangle.w;
-        //m_destinationRectangle.h = m_sourceRectangle.h;
-
-        //m_destinationRectangle.x = m_sourceRectangle.x = 0;
-        //m_destinationRectangle.y = m_sourceRectangle.y = 0;
+        
 
     m_bRunning = true;
     return true;
@@ -87,55 +54,42 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 void Game::update()
 {
     // 게임 데이터 갱신 
-    //이미지 이동 코드
-    /*if (dest == 1)
-        m_destinationRectangle.x -= 1;
-    else m_destinationRectangle.x += 1;
-    SDL_Delay(5);
-    if (m_destinationRectangle.x == 517)
-        dest = 1;
-    if (m_destinationRectangle.x == 0)
-        dest = 0;*/
-    m_currentFrame = ((SDL_GetTicks() / 100) % 6);
-   /* const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+    const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 
     if (currentKeyStates[SDL_SCANCODE_LEFT])
 
     {
-        dest = 1;
-        m_destinationRectangle.x -=1;
-        m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
+        Way = 1;
+        move_x -=1;
+        m_currentFrame = ((SDL_GetTicks() / 100) % 6);
         SDL_Delay(3);
     }
 
     else if (currentKeyStates[SDL_SCANCODE_RIGHT])
 
     {
-        dest = 0;
-        m_destinationRectangle.x += 1;
-        m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
+        Way = 0;
+        move_x += 1;
+        m_currentFrame = ((SDL_GetTicks() / 100) % 6);
         SDL_Delay(3);
     }
 
-    else
+   /* else
     {
-        m_sourceRectangle.x = 0;
+        srcRect.x = 0;
     }*/
 }
 
 void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
-    //SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
-  /*  if(dest==0)
-        SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
-    else if (dest == 1)     
-    {
-        SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle,
-            NULL, NULL, SDL_FLIP_HORIZONTAL);
-    }*/
-    m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
-    m_textureManager.drawFrame("animate", 100, 100, 128, 82, 0, m_currentFrame, m_pRenderer);
+
+    //m_textureManager.draw("animate", 0, 0, 65.8, 66, m_pRenderer);
+    if( Way ==1 )
+    m_textureManager.drawFrame("animate", move_x=100, 100, 65.8, 66, 0, m_currentFrame, m_pRenderer);
+    else if (Way==0)
+    m_textureManager.drawFrame("animate", move_x =100, 100, 65.8, 66, 1, m_currentFrame, m_pRenderer);
+
     SDL_RenderPresent(m_pRenderer);
 }
 
