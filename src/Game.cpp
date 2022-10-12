@@ -2,7 +2,7 @@
 #include<iostream>
 #include <SDL2/SDL_image.h>
 
-int x_move = 0;
+
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -58,6 +58,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
         m_destinationRectangle.x = m_sourceRectangle.x = 0;
         m_destinationRectangle.y = m_sourceRectangle.y = 0;
+        m_destinationRectangle.x = 30;
+        m_destinationRectangle.y = 200;
 
     m_bRunning = true;
     return true;
@@ -79,8 +81,7 @@ void Game::update()
     if (y_move==1)
         m_destinationRectangle.y -= 1;
     else m_destinationRectangle.y += 1;*/
-    if(m_destinationRectangle.y < 300)
-        m_destinationRectangle.y += 1;
+
 
 
 
@@ -90,8 +91,8 @@ void Game::update()
     if (currentKeyStates[SDL_SCANCODE_LEFT])
 
     {
-        x_move = 1;
-        m_destinationRectangle.x -=1;
+        x_move = -1;
+        m_destinationRectangle.x += x_move;
         m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
         SDL_Delay(3);
     }
@@ -99,8 +100,8 @@ void Game::update()
     else if (currentKeyStates[SDL_SCANCODE_RIGHT])
 
     {
-        x_move = 0;
-        m_destinationRectangle.x += 1;
+        x_move = 1;
+        m_destinationRectangle.x += x_move;
         m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
         SDL_Delay(3);
     }
@@ -109,6 +110,34 @@ void Game::update()
     {
         m_sourceRectangle.x = 0;
     }
+    Jump();
+    SDL_Delay(3);
+}
+
+void Game::Jump()
+{
+    const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+    if (currentKeyStates[SDL_SCANCODE_SPACE])
+        NowJump =true;
+    
+    if (NowJump == false) 
+    return; 
+
+    else if (NowJump == true)
+    {
+        m_sourceRectangle.x = 256; 
+        m_destinationRectangle.y += JumpSpeed;
+        //m_destinationRectangle.x += (x_move)*50;   
+        // 좌우 점프
+        SDL_Delay(30);
+        JumpSpeed += 10;
+        if (JumpSpeed == 70)
+        {
+            NowJump = false;
+            JumpSpeed = -60;
+        }
+    }
+    
 }
 
 void Game::render()
@@ -116,9 +145,9 @@ void Game::render()
     SDL_RenderClear(m_pRenderer);
     //SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
     SDL_RenderCopy(m_pRenderer, q_pTexture, &q_sourceRectangle, &q_destinationRectangle);
-    if(x_move==0)
+    if(x_move==1)
         SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
-    else if (x_move == 1)
+    else if(x_move==-1)
     {
         SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle,
             NULL, NULL, SDL_FLIP_HORIZONTAL);

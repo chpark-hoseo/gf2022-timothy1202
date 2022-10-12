@@ -13,6 +13,11 @@ public:
 	bool running();
 	void handleEvents();
 	void clean();
+	void Jump();
+
+	int JumpSpeed = -60;
+	bool NowJump = 0;
+	int x_move =1;
 
 private:
 	SDL_Window* m_pWindow;
