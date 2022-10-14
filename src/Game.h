@@ -16,7 +16,7 @@ public:
 	void clean();
 
 private:
-	TextureManager m_textureManager;
+	//TextureManager m_textureManager;
 	int m_currentFrame;
 
 	SDL_Window* m_pWindow;
