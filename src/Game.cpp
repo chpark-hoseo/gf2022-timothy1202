@@ -13,8 +13,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
             if (m_pRenderer != 0) {
                 SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255); // 붉은색 배경
-                //SDL_SetRenderDrawColor(
-                  //  m_pRenderer, 255, 255, 255, 255);
             }
             else {
                 return false; // 랜더러 생성 실패
@@ -40,30 +38,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 void Game::update()
 {
     m_currentFrame = ((SDL_GetTicks() / 100) % 6);
-   /* const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
-
-    if (currentKeyStates[SDL_SCANCODE_LEFT])
-
-    {
-        dest = 1;
-        m_destinationRectangle.x -=1;
-        m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
-        SDL_Delay(3);
-    }
-
-    else if (currentKeyStates[SDL_SCANCODE_RIGHT])
-
-    {
-        dest = 0;
-        m_destinationRectangle.x += 1;
-        m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
-        SDL_Delay(3);
-    }
-
-    else
-    {
-        m_sourceRectangle.x = 0;
-    }*/
 }
 
 void Game::render()
@@ -101,10 +75,8 @@ void Game::handleEvents()
 
 void Game::clean()
 {
-    //SDL_DestroyWindow(m_pWindow);
-    //SDL_DestroyRenderer(m_pRenderer);
-    //SDL_DestroyTexture(m_pTexture); //Texture 파괴
-    //SDL_DestroyTexture(q_pTexture); //Texture 파괴
+    SDL_DestroyWindow(m_pWindow);
+    SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();
 }
 
