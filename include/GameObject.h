@@ -15,8 +15,6 @@ public:
 protected:
 	std::string m_textureID;
 
-	int n_x;
-	int n_y;
 	int m_x;
 	int m_y;
 	int m_width;

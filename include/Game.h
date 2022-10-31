@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h> 
 #include "TextureManager.h"
 #include "Player.h"
+#include "Monster.h"
 
 
 class Game
@@ -15,7 +16,8 @@ public:
 	void clean();
 	GameObject m_go;
 	Player m_player;
-	Monster m_monster;
+	Monster m_monster; 
+	Monster m_monster2;
 
 private:
 	int m_currentFrame;

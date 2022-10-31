@@ -11,10 +11,20 @@ void Monster::draw(SDL_Renderer* pRenderer)
     GameObject::draw(pRenderer);
 }
 
-void Monster::update()
+void Monster::update(int speed)
 {
-    if (n_x ==0)
-        n_x -= 1;
-    else if (n_x == 1000)
-        n_x += 1;
+    m_currentFrame = ((SDL_GetTicks() / 100) % 6);
+    if (way == 1)
+    {
+        m_x += speed;
+        if (m_x > 990)
+            way = 0;
+    }
+    else if (way == 0)
+    {
+        m_x -= speed;
+        if (m_x < 50)
+            way = 1;
+    }
+
 }

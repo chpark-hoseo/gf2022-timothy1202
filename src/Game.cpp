@@ -32,9 +32,10 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         return false;
     }
 
-    m_go.load(100, 100, 128, 82, "animate");
-    m_player.load(300, 300, 128, 82, "animate");
-    m_monster.load(300, 300, 128, 82, "animate");
+    //m_go.load(100, 100, 128, 82, "animate");
+   // m_player.load(300, 300, 128, 82, "animate");
+    m_monster.load(400, 400, 128, 82, "animate");
+    m_monster2.load(500, 500, 128, 82, "animate");
 
     m_bRunning = true;
     return true;
@@ -42,17 +43,20 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update()
 {
-    m_go.update();
-    m_player.update();
+    //m_go.update();
+    //m_player.update();
+    m_monster.update(1);
+    m_monster2.update(5);
 }
 
 void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
 
-    m_go.draw(m_pRenderer);
-    m_player.draw(m_pRenderer);
-    m_monster
+    //m_go.draw(m_pRenderer);
+   // m_player.draw(m_pRenderer);
+    m_monster.draw(m_pRenderer);
+    m_monster2.draw(m_pRenderer);
 
     SDL_RenderPresent(m_pRenderer);
 }
