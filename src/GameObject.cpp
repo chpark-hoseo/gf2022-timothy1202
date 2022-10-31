@@ -2,7 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include "TextureManager.h"
 
-void GameObject::load(int x, int y, int width, int height, std::string textureID, int p_currentFrame)
+void GameObject::load(int x, int y, int width, int height, std::string textureID)
 {
     m_x = x;
     m_y = y;
@@ -26,6 +26,6 @@ void GameObject::draw(SDL_Renderer* pRenderer)
 
 void GameObject::update()
 {
-    m_currentFrame = ((SDL_GetTicks() / 100) % p_currentFrame);
+    m_currentFrame = ((SDL_GetTicks() / 100) % 6);
     m_x += 1;
 }

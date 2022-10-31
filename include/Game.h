@@ -15,6 +15,7 @@ public:
 	void clean();
 	GameObject m_go;
 	Player m_player;
+	Monster m_monster;
 
 private:
 	int m_currentFrame;

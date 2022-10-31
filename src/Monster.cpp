@@ -13,8 +13,8 @@ void Monster::draw(SDL_Renderer* pRenderer)
 
 void Monster::update()
 {
-    if (m_x ==0)
-        m_x -= 1;
-    else if (m_x == 1000)
-        m_x += 1;
+    if (n_x ==0)
+        n_x -= 1;
+    else if (n_x == 1000)
+        n_x += 1;
 }

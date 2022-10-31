@@ -5,7 +5,7 @@
 class GameObject {
 
 public:
-	void load(int x, int y, int width, int height, std::string textureID,int p_currentFrame);
+	void load(int x, int y, int width, int height, std::string textureID);
 
 	void draw(SDL_Renderer* pRenderer);
 	void update();
@@ -15,6 +15,8 @@ public:
 protected:
 	std::string m_textureID;
 
+	int n_x;
+	int n_y;
 	int m_x;
 	int m_y;
 	int m_width;

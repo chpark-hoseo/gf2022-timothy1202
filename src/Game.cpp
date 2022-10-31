@@ -32,8 +32,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         return false;
     }
 
-    m_go.load(100, 100, 128, 82, "animate",6);
-    m_player.load(300, 300, 128, 82, "animate",6);
+    m_go.load(100, 100, 128, 82, "animate");
+    m_player.load(300, 300, 128, 82, "animate");
+    m_monster.load(300, 300, 128, 82, "animate");
 
     m_bRunning = true;
     return true;
@@ -51,6 +52,7 @@ void Game::render()
 
     m_go.draw(m_pRenderer);
     m_player.draw(m_pRenderer);
+    m_monster
 
     SDL_RenderPresent(m_pRenderer);
 }
