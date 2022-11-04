@@ -3,9 +3,10 @@
 #include "TextureManager.h"
 #include "Player.h"
 #include "Monster.h"
+#include <vector>
 
-
-class Game
+	
+class Game 
 {
 public:
 	bool init(const char* title, int xpos, int ypos, int width, int height, int flags);
@@ -14,10 +15,9 @@ public:
 	bool running();
 	void handleEvents();
 	void clean();
-	GameObject m_go;
-	Player m_player;
-	Monster m_monster; 
-	Monster m_monster2;
+	/*Monster m_monster; 
+	Monster m_monster2;*/
+	std::vector<GameObject*> m_gameObjects;
 
 private:
 	int m_currentFrame;
