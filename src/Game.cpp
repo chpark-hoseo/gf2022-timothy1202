@@ -31,17 +31,22 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     {
         return false;
     }
+    if (!TheTextureManager::Instance()->load("Assets/helicopter.png", "monster", m_pRenderer))
+    {
+        return false;
+    }
 
     GameObject* m_go = new GameObject();
     GameObject* m_player = new Player();
+    GameObject* m_monster = new Monster();
 
     m_go->load(100, 100, 128, 82, "animate");
     m_player->load(300, 300, 128, 82, "animate");
+    m_monster->load(400, 400, 128, 55, "monster");
+
     m_gameObjects.push_back(m_go);
     m_gameObjects.push_back(m_player);
-
-   /* m_monster.load(400, 400, 128, 82, "animate");
-    m_monster2.load(500, 500, 128, 82, "animate");*/
+    m_gameObjects.push_back(m_monster);
 
     m_bRunning = true;
     return true;
@@ -49,6 +54,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update()
 {
+    //for(std::vector<GameObject*> m_gameObjects1 : m_gameObjects[i])
     for (int i = 0; i < m_gameObjects.size(); i++)
     {
         m_gameObjects[i]->update();
