@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h>
 
 int dest = 0;
+Game* Game::s_pInstance = 0;
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -35,6 +36,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     {
         return false;
     }
+
 
     GameObject* m_go = new GameObject();
     GameObject* m_player = new Player();

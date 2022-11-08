@@ -20,8 +20,18 @@ public:
 	std::vector<GameObject*> m_gameObjects;
 	//std::vector<GameObject*> m_gameObjects1;
 	//int i = 0;
+	static Game* Instance() {
+		if (s_pInstance == 0) {
+			s_pInstance = new Game();
+			return s_pInstance;
+		}
+		return s_pInstance;
+	}
+	SDL_Renderer* getRenderer() const { return m_pRenderer; }
 
 private:
+	Game() {}
+	static Game* s_pInstance;
 	int m_currentFrame;
 
 	SDL_Window* m_pWindow;
@@ -34,3 +44,4 @@ private:
 		int w, h;
 	}SDL_Rect;
 };
+typedef Game TheGame;
