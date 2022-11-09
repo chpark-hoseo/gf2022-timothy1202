@@ -19,8 +19,12 @@ public:
 	/*Monster m_monster; 
 	Monster m_monster2;*/
 	std::vector<GameObject*> m_gameObjects;
-	//std::vector<GameObject*> m_gameObjects1;
-	//int i = 0;
+
+	GameObject* m_go = new GameObject();
+	GameObject* m_player = new Player();
+	GameObject* m_monster = new Monster();
+
+	std::vector<int>g_o = { 0,1,2 };
 
 private:
 	int m_currentFrame;

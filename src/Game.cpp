@@ -36,10 +36,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         return false;
     }
 
-    GameObject* m_go = new GameObject();
-    GameObject* m_player = new Player();
-    GameObject* m_monster = new Monster();
-
     m_go->load(100, 100, 128, 82, "animate");
     m_player->load(300, 300, 128, 82, "animate");
     m_monster->load(400, 400, 128, 55, "monster");
@@ -54,19 +50,31 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update()
 {
-    for_each(m_gameObjects.begin(), m_gameObjects.end(), m_gameObjects(update));
+    //for_each(m_gameObjects.begin(), m_gameObjects.end(), m_gameObjects(update));
+    ////for (int i = 0; i < m_gameObjects.size(); i++)
+    //{
+    //    m_gameObjects[i]->update();
+    //}
     //for (int i = 0; i < m_gameObjects.size(); i++)
+    //{
+    //    m_gameObjects[i]->update();
+    //}
+    for (int num : g_o)
     {
-        m_gameObjects[i]->update();
+        m_gameObjects[num]->update();
     }
 }
 
 void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
-    for (int i = 0; i < m_gameObjects.size(); i++)
+    //for (int i = 0; i < m_gameObjects.size(); i++)
+    //{
+    //    m_gameObjects[i]->draw(m_pRenderer);
+    //}
+    for (int num : g_o)
     {
-        m_gameObjects[i]->draw(m_pRenderer);
+        m_gameObjects[num]->draw(m_pRenderer);
     }
     SDL_RenderPresent(m_pRenderer);
 
