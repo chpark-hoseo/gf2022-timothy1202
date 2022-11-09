@@ -54,8 +54,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update()
 {
-    //for(std::vector<GameObject*> m_gameObjects1 : m_gameObjects[i])
-    for (int i = 0; i < m_gameObjects.size(); i++)
+    for_each(m_gameObjects.begin(), m_gameObjects.end(), m_gameObjects(update));
+    //for (int i = 0; i < m_gameObjects.size(); i++)
     {
         m_gameObjects[i]->update();
     }
