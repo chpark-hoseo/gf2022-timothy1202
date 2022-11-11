@@ -2,6 +2,9 @@
 #include "Game.h"
 #include<iostream>
 #include <SDL2/SDL_image.h>
+#include"LoaderParams.h"
+#include"Player.h"
+#include"Enemy.h"
 
 int dest = 0;
 Game* Game::s_pInstance = 0;
@@ -38,17 +41,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     }
 
 
-    GameObject* m_go = new GameObject();
-    GameObject* m_player = new Player();
-    GameObject* m_monster = new Monster();
-
-    m_go->load(100, 100, 128, 82, "animate");
-    m_player->load(300, 300, 128, 82, "animate");
-    m_monster->load(400, 400, 128, 55, "monster");
-
-    m_gameObjects.push_back(m_go);
-    m_gameObjects.push_back(m_player);
-    m_gameObjects.push_back(m_monster);
+    m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+    m_gameObjects.push_back(new Enemy(new LoaderParams(200, 200, 128, 82, "animate")));
+    m_gameObjects.push_back(new Monster(new LoaderParams(300, 300, 128, 55, "monster")));
 
     m_bRunning = true;
     return true;
@@ -66,10 +61,12 @@ void Game::update()
 void Game::render()
 {
     SDL_RenderClear(m_pRenderer);
-    for (int i = 0; i < m_gameObjects.size(); i++)
+
+    for (int i = 0; i != m_gameObjects.size(); i++) 
     {
-        m_gameObjects[i]->draw(m_pRenderer);
+        m_gameObjects[i]->draw();
     }
+
     SDL_RenderPresent(m_pRenderer);
 
 }

@@ -1,10 +1,10 @@
 #pragma once
 #include"SDLGameObject.h"
 
-class Monster : public SDLGameObject
+class Enemy : public SDLGameObject
 {
 public:
-    Monster(const LoaderParams* pParams);
+    Enemy(const LoaderParams* pParams);
     virtual void draw();
     virtual void update();
     virtual void clean();
