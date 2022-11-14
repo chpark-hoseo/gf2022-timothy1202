@@ -1,5 +1,4 @@
 #include"SDLGameObject.h"
-#include"TextureManager.h"
 #include"LoaderParams.h"
 #include"Game.h"
 
@@ -15,11 +14,11 @@ SDLGameObject::SDLGameObject(const LoaderParams* pParams) :
     m_currentFrame = 0;
 }
 
-void SDLGameObject::update()
-{
-    m_position.setX(m_position.getX() + 1);
-    m_position.setY(m_position.getY() + 1);
-}
+//void SDLGameObject::update()
+//{
+//    m_position.setX(m_position.getX() + 1);
+//    m_position.setY(m_position.getY() + 1);
+//}
 
 void SDLGameObject::draw()
 {
