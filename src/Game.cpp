@@ -5,9 +5,12 @@
 #include"LoaderParams.h"
 #include"Player.h"
 #include"Enemy.h"
+#include "InputHandler.h"
 
 int dest = 0;
+Game* g_game = 0;
 Game* Game::s_pInstance = 0;
+
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -51,7 +54,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update()
 {
-    //for(std::vector<GameObject*> m_gameObjects1 : m_gameObjects[i])
+    
     for (int i = 0; i < m_gameObjects.size(); i++)
     {
         m_gameObjects[i]->update();
@@ -78,22 +81,12 @@ bool Game::running()
 
 void Game::handleEvents()
 {
-    SDL_Event event;
-    if (SDL_PollEvent(&event))
-    {
-        switch (event.type)
-        {
-        case SDL_QUIT:
-            m_bRunning = false;
-            break;
-        default:
-            break;
-        }
-    }
+    TheInputHandler::Instance()->update();
 }
 
 void Game::clean()
 {
+    TheInputHandler::Instance()->clean();
     SDL_DestroyWindow(m_pWindow);
     SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();

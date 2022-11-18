@@ -5,6 +5,7 @@
 #include "Monster.h"
 #include <vector>
 
+
 	
 class Game 
 {
@@ -15,11 +16,10 @@ public:
 	bool running();
 	void handleEvents();
 	void clean();
-	/*Monster m_monster; 
-	Monster m_monster2;*/
+	void quit() { m_bRunning = false; }
+
 	std::vector<GameObject*> m_gameObjects;
-	//std::vector<GameObject*> m_gameObjects1;
-	//int i = 0;
+
 	static Game* Instance() {
 		if (s_pInstance == 0) {
 			s_pInstance = new Game();
@@ -28,15 +28,15 @@ public:
 		return s_pInstance;
 	}
 	SDL_Renderer* getRenderer() const { return m_pRenderer; }
+	Game() {}
 
 private:
-	Game() {}
 	static Game* s_pInstance;
 	int m_currentFrame;
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
-	bool m_bRunning;
+	bool m_bRunning = true;
 
 	typedef struct SDL_Rect
 	{
