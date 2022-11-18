@@ -6,9 +6,11 @@ class SDLGameObject : public GameObject {
 public:
 	SDLGameObject(const LoaderParams* pParams);
 	virtual void draw();
-	virtual void update() {}
+	virtual void update();
 	virtual void clean() {}
 	virtual ~SDLGameObject() {}
+	Vector2D m_velocity;
+	Vector2D m_acceleration;
 
 protected:
 	int m_width;
