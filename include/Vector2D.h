@@ -1,6 +1,5 @@
 #pragma once
 #include <math.h>
-#include"GameObject.h"
 
 class Vector2D {
 public:
