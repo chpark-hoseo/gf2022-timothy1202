@@ -3,7 +3,6 @@
 #include<iostream>
 #include <SDL2/SDL_image.h>
 #include"LoaderParams.h"
-#include"Player.h"
 #include"Enemy.h"
 #include "InputHandler.h"
 
@@ -86,9 +85,9 @@ void Game::handleEvents()
 
 void Game::clean()
 {
-    TheInputHandler::Instance()->clean();
     SDL_DestroyWindow(m_pWindow);
     SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();
+    TheInputHandler::Instance()->clean();
 }
 

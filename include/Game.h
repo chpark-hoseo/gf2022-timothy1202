@@ -4,8 +4,6 @@
 #include "Player.h"
 #include "Monster.h"
 #include <vector>
-
-
 	
 class Game 
 {
