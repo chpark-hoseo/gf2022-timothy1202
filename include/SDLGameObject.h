@@ -1,5 +1,4 @@
 #pragma once
-#include"GameObject.h"
 #include "Vector2D.h"
 
 class SDLGameObject : public GameObject {
