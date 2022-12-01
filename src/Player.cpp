@@ -2,6 +2,8 @@
 #include <SDL2/SDL_image.h>
 #include "InputHandler.h"
 
+float Player::Player_x;
+float Player::Player_y;
 Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
 void Player::draw()
@@ -13,10 +15,12 @@ void Player::clean() {}
 
 void Player::update()
 {
+    Player_x = m_position.getX();
+    Player_y = m_position.getY();
     m_velocity.setX(0);
     m_velocity.setY(0);
     handleInput();
-    m_currentFrame = ((SDL_GetTicks() / 100) % 6);
+    m_currentFrame = ((SDL_GetTicks() / 100) % 4);
     SDLGameObject::update();
 }
 

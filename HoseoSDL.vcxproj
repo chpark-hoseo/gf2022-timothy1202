@@ -147,6 +147,7 @@
     <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Monster.cpp" />
+    <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\SDLGameObject.cpp" />
     <ClCompile Include="src\TextureManager.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="include\LoaderParams.h" />
     <ClInclude Include="include\main.h" />
     <ClInclude Include="include\Monster.h" />
+    <ClInclude Include="include\Object.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\SDLGameObject.h" />
     <ClInclude Include="include\TextureManager.h" />

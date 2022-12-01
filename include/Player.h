@@ -9,4 +9,6 @@ public:
     virtual void draw();
     virtual void update();
     virtual void clean();
+    static float Player_x;
+    static float Player_y;
 };

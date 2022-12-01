@@ -1,5 +1,7 @@
 #include"Monster.h"
-
+#include"Player.h"
+#include<iostream>
+//핑크몬스터
 
 Monster::Monster(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
@@ -11,9 +13,53 @@ void Monster::draw()
 void Monster::update()
 {
     SDLGameObject::update();
-    m_velocity.setX(2);
-    //m_x += 1;
-    m_currentFrame = ((SDL_GetTicks() / 100) % 5);
+
+    if (Gh_Way == 1)
+    {
+        m_velocity.setX(2);
+        if (m_position.getX() > 1000)
+        {
+            Gh_Way = 2;
+            m_velocity.setX(0);
+        }
+    }
+    else if (Gh_Way == 2)
+    {
+        m_velocity.setY(2);
+        if (m_position.getY() > 800)
+        {
+            Gh_Way = 3;
+            m_velocity.setY(0);
+        }
+    }
+    else if (Gh_Way == 3)
+    {
+        m_velocity.setY(-2);
+        if (m_position.getY() < 100)
+        {
+            Gh_Way = 4;
+            m_velocity.setY(0);
+        }
+    }
+    else if (Gh_Way == 4)
+    {
+        m_velocity.setX(-2);
+        if (m_position.getX() < 100)
+        {
+            Gh_Way = 1;
+            m_velocity.setX(0);
+        }
+    }
+    if (((Player::Player_x <= m_position.getX() + 70) && (Player::Player_x + 96 >= m_position.getX())) && ((Player::Player_y <= m_position.getY() + 96) && (Player::Player_y + 96 >= m_position.getY())))
+    {
+        std::cout <<  "hi"<<std::endl ;
+    }
+    else
+    {
+        std::cout << "Bye";
+    }
+
+           // GameEnd = 1;
 }
 
 void Monster::clean() {}

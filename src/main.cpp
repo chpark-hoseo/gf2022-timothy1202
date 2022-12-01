@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 
 
     if (TheGame::Instance()->init("Chapter 1",
-        100, 100, 640, 480, false))
+        100, 100, 1200, 1000, false))
     {
         Uint32 frameStart, frameTime;
         while (TheGame::Instance()->running()) {
