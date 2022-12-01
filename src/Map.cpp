@@ -10,10 +10,8 @@ void Map::map()
     {
         for (int j = 0; j < 10; j++)
         {
-            x[i][j] = 100 * i;
-            y[i][j] = 100 * j;
-            std::cout << x[i][j] << std::endl;
-            std::cout << y[i][j] << std::endl;
+            x[j][i] = 100 * j;
+            y[j][i] = 100 * i;
 
         }
     }
@@ -27,8 +25,8 @@ void Map::update()
         {
             if (map1[i][j] == 1)
             {
-                if (((Player::Player_x <= x[i][j] + 100) && (Player::Player_x + 96 >= x[i][j])) &&
-                    ((Player::Player_y <= y[i][j] + 100) && (Player::Player_y + 96 >= y[i][j])))
+                if (((Player::Player_x <= x[j][i] + 100) && (Player::Player_x + 96 >= x[j][i])) &&
+                    ((Player::Player_y <= y[j][i] + 100) && (Player::Player_y + 96 >= y[j][i])))
                 {
                     Player::Block = 1;
                 }
