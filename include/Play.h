@@ -1,7 +1,6 @@
 #pragma once
 #include"SDLGameObject.h"
-#include<windows.h>
-#include<WTYPES.h>
+
 
 
 class Play : public SDLGameObject

@@ -5,7 +5,7 @@
 #include"LoaderParams.h"
 #include"Enemy.h"
 #include "InputHandler.h"
-#include "Map.h"
+
 
 int dest = 0;
 Game* g_game = 0;
@@ -140,14 +140,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
     // 오브젝트 그리는 코드
     {
-        m_gameObjects.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "Background")));//배경
-        m_gameObjects.push_back(new Play(new LoaderParams(400, 300, 400, 100, "Exit")));//exit버튼
-        m_gameObjects.push_back(new Play(new LoaderParams(400, 500, 400, 100, "Play"))); //play버튼
-        m_gameObjects.push_back(new Play(new LoaderParams(400, 100, 400, 202, "Logo"))); //팩맨표지
+        m_startGame.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "Background")));//배경
+        m_startGame.push_back(new Play(new LoaderParams(400, 300, 400, 100, "Exit")));//exit버튼
+        m_startGame.push_back(new Play(new LoaderParams(400, 500, 400, 100, "Play"))); //play버튼
+        m_startGame.push_back(new Play(new LoaderParams(400, 100, 400, 202, "Logo"))); //팩맨표지
 
-        m_gameObjects.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "gameover1")));//게임오버배경
+        m_endGame.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "gameover1")));//게임오버배경
 
-        m_gameObjects.push_back(new Player(new LoaderParams(400, 100, 96, 96, "MainCh")));//팩맨
+        m_gameObjects.push_back(new Player(new LoaderParams(400, 200, 96, 96, "MainCh")));//팩맨
         m_gameObjects.push_back(new Enemy(new LoaderParams(100, 200, 74, 96, "O_Ghost")));//오렌지 고스트
         m_gameObjects.push_back(new Monster(new LoaderParams(100, 100, 70, 96, "P_Ghost")));//핑크고스트
         m_gameObjects.push_back(new GhostChange(new LoaderParams(100, 700, 70, 96, "CH_Ghost")));//체인지고스트
@@ -182,21 +182,23 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update()
 {
-    TheMap::Instance()->update();
     if (Play::GamePlay == 0)
     {
-        m_gameObjects[0]->update();
-        m_gameObjects[1]->update();
-        m_gameObjects[2]->update();
-        m_gameObjects[3]->update();
+        for (int i = 0; i != m_startGame.size(); i++)
+        {
+            m_startGame[i]->update();
+        }
     }
     else if (Play::GamePlay == 2)
     {
-        m_gameObjects[4]->update();
+        for (int i = 0; i != m_endGame.size(); i++)
+        {
+            m_endGame[i]->update();
+        }
     }
     else if (Play::GamePlay == 1)
     {
-        for (int i = 5; i != m_gameObjects.size(); i++)
+        for (int i = 0; i != m_gameObjects.size(); i++)
         {
             m_gameObjects[i]->update();
         }
@@ -208,19 +210,22 @@ void Game::render()
     SDL_RenderClear(m_pRenderer);
     if (Play::GamePlay == 0)
     {
-        m_gameObjects[0]->draw(); 
-        m_gameObjects[1]->draw();
-        m_gameObjects[2]->draw();
-        m_gameObjects[3]->draw();
+        for (int i = 0; i != m_startGame.size(); i++)
+        {
+            m_startGame[i]->draw();
+        }
   
     }
     else if (Play::GamePlay == 2)
     {
-        m_gameObjects[4]->draw();
+        for (int i = 0; i != m_endGame.size(); i++)
+        {
+            m_endGame[i]->draw();
+        }
     }
     else if (Play::GamePlay == 1)
     {
-        for (int i = 5; i != m_gameObjects.size(); i++) 
+        for (int i = 0; i != m_gameObjects.size(); i++) 
         {
             m_gameObjects[i]->draw();
         }
