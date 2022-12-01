@@ -1,5 +1,6 @@
 #include"Monster.h"
 
+
 Monster::Monster(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
 void Monster::draw()
@@ -9,8 +10,9 @@ void Monster::draw()
 
 void Monster::update()
 {
-  m_y += 1;
-    m_x += 1;
+    SDLGameObject::update();
+    m_velocity.setX(2);
+    //m_x += 1;
     m_currentFrame = ((SDL_GetTicks() / 100) % 5);
 }
 
