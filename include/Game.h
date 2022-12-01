@@ -5,6 +5,8 @@
 #include "Monster.h"
 #include <vector>
 #include"Object.h"
+#include"GhostChange.h"
+#include"Play.h"
 	
 class Game 
 {

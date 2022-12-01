@@ -1,5 +1,7 @@
 #include"InputHandler.h"
 #include "Game.h"
+#include<windows.h>
+
 
 InputHandler* InputHandler::s_pInstance = 0;
 
@@ -10,7 +12,6 @@ InputHandler :: InputHandler()
         m_mouseButtonStates.push_back(false);
     }
 }
-
 
 void InputHandler::update()
     {

@@ -1,6 +1,7 @@
 #include"Monster.h"
 #include"Player.h"
 #include<iostream>
+#include"Play.h"
 //핑크몬스터
 
 Monster::Monster(const LoaderParams* pParams) : SDLGameObject(pParams) {}
@@ -52,14 +53,9 @@ void Monster::update()
     }
     if (((Player::Player_x <= m_position.getX() + 70) && (Player::Player_x + 96 >= m_position.getX())) && ((Player::Player_y <= m_position.getY() + 96) && (Player::Player_y + 96 >= m_position.getY())))
     {
-        std::cout <<  "hi"<<std::endl ;
-    }
-    else
-    {
-        std::cout << "Bye";
+        Play::GamePlay = 2;
     }
 
-           // GameEnd = 1;
 }
 
 void Monster::clean() {}

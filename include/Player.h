@@ -11,4 +11,5 @@ public:
     virtual void clean();
     static float Player_x;
     static float Player_y;
+    static bool Block;
 };

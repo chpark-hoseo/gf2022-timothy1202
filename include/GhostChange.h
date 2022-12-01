@@ -1,13 +1,13 @@
 #pragma once
 #include"SDLGameObject.h"
 
-class Enemy : public SDLGameObject
+class GhostChange : public SDLGameObject
 {
 public:
-    Enemy(const LoaderParams* pParams);
+    GhostChange(const LoaderParams* pParams);
     virtual void draw();
     virtual void update();
     virtual void clean();
     //virtual void HandleInput();
-    int OG_Way = 1;
+    int CH_Way = 1;
 };

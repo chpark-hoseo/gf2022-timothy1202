@@ -144,10 +144,13 @@
   <ItemGroup>
     <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GhostChange.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\Monster.cpp" />
     <ClCompile Include="src\Object.cpp" />
+    <ClCompile Include="src\Play.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\SDLGameObject.cpp" />
     <ClCompile Include="src\TextureManager.cpp" />
@@ -157,11 +160,14 @@
     <ClInclude Include="assets\Player.h" />
     <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\GhostChange.h" />
     <ClInclude Include="include\InputHandler.h" />
     <ClInclude Include="include\LoaderParams.h" />
     <ClInclude Include="include\main.h" />
+    <ClInclude Include="include\Map.h" />
     <ClInclude Include="include\Monster.h" />
     <ClInclude Include="include\Object.h" />
+    <ClInclude Include="include\Play.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\SDLGameObject.h" />
     <ClInclude Include="include\TextureManager.h" />
