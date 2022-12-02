@@ -20,6 +20,8 @@ public:
 	void quit() { m_bRunning = false; }
 
 	std::vector<GameObject*> m_gameObjects;
+	std::vector<GameObject*> m_stages;
+	std::vector<GameObject*> m_stage2;
 	std::vector<GameObject*> m_startGame;
 	std::vector<GameObject*> m_endGame;
 

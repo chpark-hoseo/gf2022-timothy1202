@@ -136,22 +136,50 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         {
             return false;
         }
+        if (!TheTextureManager::Instance()->load("Assets/Level1.png", "level1", m_pRenderer))
+        {
+            return false;
+        }
+        if (!TheTextureManager::Instance()->load("Assets/Level2.png", "level2", m_pRenderer))
+        {
+            return false;
+        }
+        if (!TheTextureManager::Instance()->load("Assets/Level3.png", "level3", m_pRenderer))
+        {
+            return false;
+        }
+        if (!TheTextureManager::Instance()->load("Assets/LevelBackground.png", "levelbackground", m_pRenderer))
+        {
+            return false;
+        }
+        if (!TheTextureManager::Instance()->load("Assets/Level2GameBackground.png", "level2background", m_pRenderer))
+        {
+            return false;
+        }
     }
 
     // 오브젝트 그리는 코드
     {
+        //게임시작 화면
         m_startGame.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "Background")));//배경
         m_startGame.push_back(new Play(new LoaderParams(400, 300, 400, 100, "Exit")));//exit버튼
         m_startGame.push_back(new Play(new LoaderParams(400, 500, 400, 100, "Play"))); //play버튼
         m_startGame.push_back(new Play(new LoaderParams(400, 100, 400, 202, "Logo"))); //팩맨표지
 
+        //레벨 선택 화면
+        m_stages.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "levelbackground")));//레벨선택창 배경
+        m_stages.push_back(new Play(new LoaderParams(0, 200, 423, 185, "level1")));//레벨1 고르기
+        m_stages.push_back(new Play(new LoaderParams(800, 200, 423, 185, "level2")));//레벨2 고르기
+        m_stages.push_back(new Play(new LoaderParams(400, 600, 423, 185, "level3")));//레벨3 고르기
+
+        //게임종료 화면
         m_endGame.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "gameover1")));//게임오버배경
 
+        //레벨1 화면
         m_gameObjects.push_back(new Player(new LoaderParams(400, 200, 96, 96, "MainCh")));//팩맨
         m_gameObjects.push_back(new Enemy(new LoaderParams(100, 200, 74, 96, "O_Ghost")));//오렌지 고스트
         m_gameObjects.push_back(new Monster(new LoaderParams(100, 100, 70, 96, "P_Ghost")));//핑크고스트
         m_gameObjects.push_back(new GhostChange(new LoaderParams(100, 700, 70, 96, "CH_Ghost")));//체인지고스트
-
 
         m_gameObjects.push_back(new Object(new LoaderParams(0, 100, 92, 200, "Wall1")));//세로벽
         m_gameObjects.push_back(new Object(new LoaderParams(0, 300, 92, 200, "Wall1")));
@@ -173,6 +201,10 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_gameObjects.push_back(new Object(new LoaderParams(600, 900, 200, 92, "Wall2")));
         m_gameObjects.push_back(new Object(new LoaderParams(800, 900, 200, 92, "Wall2")));
         m_gameObjects.push_back(new Object(new LoaderParams(1000, 900, 200, 92, "Wall2")));
+
+        //레벨2 화면
+        m_stage2.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "level2background")));//배경
+
 
     }
 
@@ -196,11 +228,25 @@ void Game::update()
             m_endGame[i]->update();
         }
     }
+    else if (Play::GamePlay == 3)
+    {
+        for (int i = 0; i != m_stages.size(); i++)
+        {
+            m_stages[i]->update();
+        }
+    }
     else if (Play::GamePlay == 1)
     {
         for (int i = 0; i != m_gameObjects.size(); i++)
         {
             m_gameObjects[i]->update();
+        }
+    }
+    else if (Play::GamePlay == 4)
+    {
+        for (int i = 0; i != m_stage2.size(); i++)
+        {
+            m_stage2[i]->update();
         }
     }
 }
@@ -223,11 +269,25 @@ void Game::render()
             m_endGame[i]->draw();
         }
     }
+    else if (Play::GamePlay == 3)
+    {
+        for (int i = 0; i != m_stages.size(); i++)
+        {
+            m_stages[i]->draw();
+        }
+    }
     else if (Play::GamePlay == 1)
     {
         for (int i = 0; i != m_gameObjects.size(); i++) 
         {
             m_gameObjects[i]->draw();
+        }
+    }
+    else if (Play::GamePlay == 4)
+    {
+        for (int i = 0; i != m_stage2.size(); i++)
+        {
+            m_stage2[i]->draw();
         }
     }
 

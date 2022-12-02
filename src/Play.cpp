@@ -18,7 +18,9 @@ void Play::update()
 {
 	HandleInput();
     SDLGameObject::update();
+	if(GamePlay==0)
     m_currentFrame = ((SDL_GetTicks() / 100) % 3);
+
 }
 
 void Play::clean() {}
@@ -26,21 +28,41 @@ void Play::clean() {}
 void Play::HandleInput()
 {
 	Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
-	std::cout << vec->getX();
-	if ((vec->getX()>400 && vec->getX() <800)&&vec->getY() > 500)
+	if (GamePlay == 0)
 	{
-		if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {
-			GamePlay = 1;
-			std::cout << "GamePlay=1";
+		if ((vec->getX() > 400 && vec->getX() < 800) && vec->getY() > 500)
+		{
+
+			if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {
+				GamePlay = 3;
+				std::cout << "GamePlay=3";
+			}
+		}
+		else if ((vec->getX() > 400 && vec->getX() < 800) && vec->getY() < 400)
+		{
+				if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {
+					GamePlay = 2;
+					std::cout << "GamePlay=2";
+				}
 		}
 	}
-	else if ((vec->getX() > 400 && vec->getX() < 800) && vec->getY() < 400)
+	else if (GamePlay == 3)
 	{
-	if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {
-		Play::GamePlay = 2;
-		std::cout << "GamePlay=2";
+		if ((vec->getX() > 0 && vec->getX() < 423) && vec->getY() < 385)
+		{
+				if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {
+					GamePlay = 1;
+					std::cout << "GamePlay=1";
+				}
+		}
+		//범위 수정해줘야함
+		//두번 눌림
+		if ((vec->getX() > 800 && vec->getX() < 1223) && (vec->getY() > 200 && vec->getY()<385))
+		{
+			if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {
+				GamePlay = 4;
+				std::cout << "GamePlay=4";
+			}
+		}
 	}
-
-	}
-
 }
