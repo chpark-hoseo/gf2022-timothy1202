@@ -181,14 +181,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_gameObjects.push_back(new Monster(new LoaderParams(100, 100, 70, 96, "P_Ghost")));//핑크고스트
         m_gameObjects.push_back(new GhostChange(new LoaderParams(100, 700, 70, 96, "CH_Ghost")));//체인지고스트
 
-        m_gameObjects.push_back(new Object(new LoaderParams(0, 100, 92, 200, "Wall1")));//세로벽
-        m_gameObjects.push_back(new Object(new LoaderParams(0, 300, 92, 200, "Wall1")));
-        m_gameObjects.push_back(new Object(new LoaderParams(0, 500, 92, 200, "Wall1")));
-        m_gameObjects.push_back(new Object(new LoaderParams(0, 700, 92, 200, "Wall1")));
-        m_gameObjects.push_back(new Object(new LoaderParams(1100, 100, 92, 200, "Wall1")));
-        m_gameObjects.push_back(new Object(new LoaderParams(1100, 300, 92, 200, "Wall1")));
-        m_gameObjects.push_back(new Object(new LoaderParams(1100, 500, 92, 200, "Wall1")));
-        m_gameObjects.push_back(new Object(new LoaderParams(1100, 700, 92, 200, "Wall1")));
+        m_gameObjects.push_back(new VWall(new LoaderParams(0, 100, 92, 200, "Wall1")));//세로벽
+        m_gameObjects.push_back(new VWall(new LoaderParams(0, 300, 92, 200, "Wall1")));
+        m_gameObjects.push_back(new VWall(new LoaderParams(0, 500, 92, 200, "Wall1")));
+        m_gameObjects.push_back(new VWall(new LoaderParams(0, 700, 92, 200, "Wall1")));
+        m_gameObjects.push_back(new VWall(new LoaderParams(1100, 100, 92, 200, "Wall1")));
+        m_gameObjects.push_back(new VWall(new LoaderParams(1100, 300, 92, 200, "Wall1")));
+        m_gameObjects.push_back(new VWall(new LoaderParams(1100, 500, 92, 200, "Wall1")));
+        m_gameObjects.push_back(new VWall(new LoaderParams(1100, 700, 92, 200, "Wall1")));
         m_gameObjects.push_back(new Object(new LoaderParams(0, 0, 200, 92, "Wall2")));//가로벽
         m_gameObjects.push_back(new Object(new LoaderParams(200, 0, 200, 92, "Wall2")));
         m_gameObjects.push_back(new Object(new LoaderParams(400, 0, 200, 92, "Wall2")));
@@ -201,6 +201,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_gameObjects.push_back(new Object(new LoaderParams(600, 900, 200, 92, "Wall2")));
         m_gameObjects.push_back(new Object(new LoaderParams(800, 900, 200, 92, "Wall2")));
         m_gameObjects.push_back(new Object(new LoaderParams(1000, 900, 200, 92, "Wall2")));
+        m_gameObjects.push_back(new Object(new LoaderParams(200, 200, 192, 200, "SquareWall")));//네모벽
 
         //레벨2 화면
         m_stage2.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "level2background")));//배경

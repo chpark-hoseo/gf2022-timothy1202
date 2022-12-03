@@ -5,11 +5,14 @@ class Player : public SDLGameObject
 {
 public:
     void handleInput();
+    void CrashUp();
+    void CrashDown();
+    void CrashRight();
+    void CrashLeft();
     Player(const LoaderParams* pParams);
     virtual void draw();
     virtual void update();
     virtual void clean();
     static float Player_x;
     static float Player_y;
-    static bool Block;
 };

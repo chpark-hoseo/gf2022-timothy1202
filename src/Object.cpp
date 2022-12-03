@@ -14,9 +14,9 @@ void Object::clean() {}
 void Object::update()
 {
     SDLGameObject::update();
-    if (((Player::Player_x <= m_position.getX() + 92) && (Player::Player_x + 96 >= m_position.getX())) && ((Player::Player_y <= m_position.getY() + 200) && (Player::Player_y + 96 >= m_position.getY())))
-    {
-      //  Player::m_velocity.setX(-2);
-    }
+    //if (((Player::Player_x <= m_position.getX() + 92) && (Player::Player_x + 96 >= m_position.getX())) && ((Player::Player_y <= m_position.getY() + 200) && (Player::Player_y + 96 >= m_position.getY())))
+    //{
+    //  //  Player::m_velocity.setX(-2);
+    //}
     //
 }

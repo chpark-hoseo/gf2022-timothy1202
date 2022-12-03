@@ -55,8 +55,7 @@ void Play::HandleInput()
 					std::cout << "GamePlay=1";
 				}
 		}
-		//범위 수정해줘야함
-		//두번 눌림
+
 		if ((vec->getX() > 800 && vec->getX() < 1223) && (vec->getY() > 200 && vec->getY()<385))
 		{
 			if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {

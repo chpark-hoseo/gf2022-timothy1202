@@ -7,7 +7,8 @@
 #include"Object.h"
 #include"GhostChange.h"
 #include"Play.h"
-	
+#include"VWall.h"	
+
 class Game 
 {
 public:

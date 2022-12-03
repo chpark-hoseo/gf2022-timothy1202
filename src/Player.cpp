@@ -4,7 +4,6 @@
 
 float Player::Player_x;
 float Player::Player_y;
-bool Player::Block=0;
 Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
 void Player::draw()
@@ -30,17 +29,74 @@ void Player::handleInput()
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)) {
         m_velocity.setX(2);
         m_currentRow = 0;
+        CrashRight();
     }
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT)) {
+    else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT)) {
         m_velocity.setX(-2);
         m_currentRow = 1;
+        CrashLeft();
     }
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP)) {
+    else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP)) {
         m_velocity.setY(-2);
         m_currentRow = 2;
+        CrashUp();
     }
-    if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN)) {
+    else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN)) {
         m_velocity.setY(2);
         m_currentRow = 3;
+        CrashDown();
+    }
+}
+//고쳐야함 충돌 코드 이상함
+void Player::CrashUp() //위로 부딪힘
+{
+    if (m_position.getY() < 100)
+    {
+        m_position.setY(101);
+    }
+
+    else if (m_position.getY() < 400 && (m_position.getX() > 200 && m_position.getX() < 400))
+    {
+        m_position.setY(399);
+    }
+}
+
+void Player::CrashDown() //아래쪽으로 부딪힘
+{
+     if (m_position.getY() > 800)
+     {
+         m_position.setY(799);
+     }
+
+     else if (m_position.getY() > 100 && (m_position.getX() > 200 && m_position.getX() < 400))
+     {
+         m_position.setY(99);
+     }
+}
+
+void Player::CrashRight() // 오른쪽으로 부딪힘 (좌표는 왼쪽위가 기준임을 알아야함)
+{
+    if (m_position.getX() > 1000)
+    {
+        m_position.setX(999);
+    }
+
+    else if ((m_position.getY() > 100 && m_position.getY() < 400) && m_position.getX() > 100)
+    {
+        m_position.setX(99);
+    }
+}
+
+void Player::CrashLeft() //왼쪽으로 부딪힘
+{
+
+    if (m_position.getX() < 100)
+    {
+        m_position.setX(101);
+    }
+
+    else if ((m_position.getY() > 100 && m_position.getY() < 400) && m_position.getX() < 400)
+    {
+        m_position.setX(401);
     }
 }
