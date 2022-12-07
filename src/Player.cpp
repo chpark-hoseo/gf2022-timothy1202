@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <SDL2/SDL_image.h>
 #include "InputHandler.h"
+#include"iostream"
 
 float Player::Player_x;
 float Player::Player_y;
@@ -40,6 +41,7 @@ void Player::handleInput()
         m_velocity.setY(-2);
         m_currentRow = 2;
         CrashUp();
+        std::cout<<m_position.getY();
     }
     else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN)) {
         m_velocity.setY(2);
@@ -57,7 +59,7 @@ void Player::CrashUp() //À§·Î ºÎµúÈû
 
     else if (m_position.getY() < 400 && (m_position.getX() > 200 && m_position.getX() < 400))
     {
-        m_position.setY(399);
+        m_velocity.setY(2);
     }
 }
 
@@ -70,7 +72,7 @@ void Player::CrashDown() //¾Æ·¡ÂÊÀ¸·Î ºÎµúÈû
 
      else if (m_position.getY() > 100 && (m_position.getX() > 200 && m_position.getX() < 400))
      {
-         m_position.setY(99);
+         m_velocity.setY(-2);
      }
 }
 
