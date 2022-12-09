@@ -3,9 +3,16 @@
 #include "InputHandler.h"
 #include"iostream"
 
+
 float Player::Player_x;
 float Player::Player_y;
 Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams) {}
+
+void Player::start()
+{
+    Before_Player_x= m_position.getX();
+    Before_Player_y = m_position.getY();
+}
 
 void Player::draw()
 {
@@ -18,35 +25,59 @@ void Player::update()
 {
     Player_x = m_position.getX();
     Player_y = m_position.getY();
-    m_velocity.setX(0);
-    m_velocity.setY(0);
     handleInput();
+    move();
     m_currentFrame = ((SDL_GetTicks() / 100) % 4);
     SDLGameObject::update();
+}
+
+void Player::move()
+{
+    if (Before_Player_x == m_position.getX()+100)
+    {
+        Player_Position_x++;
+        Before_Player_x = m_position.getX();
+        std::cout << Player_Position_x;
+    }
+    else if (Before_Player_y == m_position.getY() + 100) {
+        Player_Position_y++;
+        Before_Player_y= m_position.getY();
+    }
 }
 
 void Player::handleInput()
 {
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)) {
-        m_velocity.setX(2);
+        m_velocity.setY(0);
         m_currentRow = 0;
-        CrashRight();
+        if (map[Player_Position_x + 1][Player_Position_y] == 1)
+        {
+            m_velocity.setX(0);
+            std::cout << "hello";
+        }
+        else
+        {
+            m_velocity.setX(2);
+        }
+        //CrashRight();
     }
     else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT)) {
+        m_velocity.setY(0);
         m_velocity.setX(-2);
         m_currentRow = 1;
-        CrashLeft();
+        //CrashLeft();
     }
     else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP)) {
+        m_velocity.setX(0);
         m_velocity.setY(-2);
         m_currentRow = 2;
-        CrashUp();
-        std::cout<<m_position.getY();
+        //CrashUp();
     }
     else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN)) {
+        m_velocity.setX(0);
         m_velocity.setY(2);
         m_currentRow = 3;
-        CrashDown();
+        //CrashDown();
     }
 }
 //고쳐야함 충돌 코드 이상함
