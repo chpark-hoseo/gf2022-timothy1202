@@ -39,6 +39,13 @@ void Player::move()
         Player_Position_y++;
         Before_Player_y= m_position.getY();
     }
+    else if (Before_Player_x - 100 == m_position.getX())
+    {
+        Player_Position_x--;
+        Before_Player_x = m_position.getX();
+        std::cout << Player_Position_x << std::endl;
+        std::cout << Before_Player_x << std::endl;
+    }
 }
 
 void Player::CheckPosition()
@@ -46,11 +53,11 @@ void Player::CheckPosition()
     //¿À¸¥ÂÊ
           if (map[Player_Position_y][Player_Position_x + 1] == 1)
           {
-              MoveNow = 0;
+             /* MoveNow = 0;
               if (MoveNow == 1)
                   return;
-              else
-              m_velocity.setX(0);
+              else*/if (m_velocity.getX() > 0)
+                  m_velocity.setX(0);
           }
 }
 

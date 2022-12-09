@@ -51,10 +51,10 @@ void Monster::update()
             m_velocity.setX(0);
         }
     }
-    if (((Player::Player_x <= m_position.getX() + 70) && (Player::Player_x + 96 >= m_position.getX())) && ((Player::Player_y <= m_position.getY() + 96) && (Player::Player_y + 96 >= m_position.getY())))
+ /*   if (((Player::Player_x <= m_position.getX() + 70) && (Player::Player_x + 96 >= m_position.getX())) && ((Player::Player_y <= m_position.getY() + 96) && (Player::Player_y + 96 >= m_position.getY())))
     {
         Play::GamePlay = 2;
-    }
+    }*/
 
 }
 
