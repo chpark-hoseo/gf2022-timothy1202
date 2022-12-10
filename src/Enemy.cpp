@@ -16,10 +16,7 @@ void Enemy::clean() {}
 
 void Enemy::update()
 {
-	//HandleInput();
-	//m_currentFrame = ((SDL_GetTicks() / 100) % 6);
 	SDLGameObject::update();
-	//m_acceleration.setX(1);
 	
 	if (OG_Way == 1)
 	{
@@ -39,18 +36,8 @@ void Enemy::update()
 			m_velocity.setY(0);
 		}
 	}
-	if (((Player::Player_x <= m_position.getX() + 70) && (Player::Player_x + 96 >= m_position.getX())) && ((Player::Player_y <= m_position.getY() + 96) && (Player::Player_y + 96 >= m_position.getY())))
+	/*if (((Player::Player_x <= m_position.getX() + 100) && (Player::Player_x + 100 >= m_position.getX())) && ((Player::Player_y <= m_position.getY() + 100) && (Player::Player_y + 100 >= m_position.getY())))
 	{
 		Play::GamePlay = 2;
-	}
+	}*/
 }
-
-//void Enemy::HandleInput()
-//{
-//	if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {
-//		printf("shoot \n");
-//	}
-//	Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
-//	m_velocity = (*vec - m_position) / 100;
-//
-//}

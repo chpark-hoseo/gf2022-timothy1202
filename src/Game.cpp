@@ -156,6 +156,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         {
             return false;
         }
+        if (!TheTextureManager::Instance()->load("Assets/OneHObstacle2.png", "Wall3", m_pRenderer))
+        {
+            return false;
+        }
+        if (!TheTextureManager::Instance()->load("Assets/OneObstacle2.png", "Wall4", m_pRenderer))
+        {
+            return false;
+        }
     }
 
     // 오브젝트 그리는 코드
@@ -170,7 +178,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_stages.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "levelbackground")));//레벨선택창 배경
         m_stages.push_back(new Play(new LoaderParams(0, 200, 423, 185, "level1")));//레벨1 고르기
         m_stages.push_back(new Play(new LoaderParams(800, 200, 423, 185, "level2")));//레벨2 고르기
-        m_stages.push_back(new Play(new LoaderParams(400, 600, 423, 185, "level3")));//레벨3 고르기
 
         //게임종료 화면
         m_endGame.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "gameover1")));//게임오버배경
@@ -179,7 +186,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_gameObjects.push_back(new Player(new LoaderParams(400, 200, 100, 100, "MainCh")));//팩맨
         m_gameObjects.push_back(new Enemy(new LoaderParams(100, 200, 100, 100, "O_Ghost")));//오렌지 고스트
         m_gameObjects.push_back(new Monster(new LoaderParams(100, 100, 100, 100, "P_Ghost")));//핑크고스트
-        m_gameObjects.push_back(new GhostChange(new LoaderParams(100, 700, 100, 100, "CH_Ghost")));//체인지고스트
+        m_gameObjects.push_back(new GhostChange(new LoaderParams(100, 800, 100, 100, "CH_Ghost")));//체인지고스트
 
         m_gameObjects.push_back(new Object(new LoaderParams(0, 100, 100, 200, "Wall1")));//세로벽
         m_gameObjects.push_back(new Object(new LoaderParams(0, 300, 100, 200, "Wall1")));
@@ -189,6 +196,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_gameObjects.push_back(new Object(new LoaderParams(1100, 300, 100, 200, "Wall1")));
         m_gameObjects.push_back(new Object(new LoaderParams(1100, 500, 100, 200, "Wall1")));
         m_gameObjects.push_back(new Object(new LoaderParams(1100, 700, 100, 200, "Wall1")));
+        m_gameObjects.push_back(new Object(new LoaderParams(900, 600, 100, 200, "Wall1")));
+        m_gameObjects.push_back(new Object(new LoaderParams(200, 500, 100, 200, "Wall1")));
+        m_gameObjects.push_back(new Object(new LoaderParams(400, 400, 100, 200, "Wall1")));
         m_gameObjects.push_back(new Object(new LoaderParams(0, 0, 200, 100, "Wall2")));//가로벽
         m_gameObjects.push_back(new Object(new LoaderParams(200, 0, 200, 100, "Wall2")));
         m_gameObjects.push_back(new Object(new LoaderParams(400, 0, 200, 100, "Wall2")));
@@ -201,7 +211,70 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_gameObjects.push_back(new Object(new LoaderParams(600, 900, 200, 100, "Wall2")));
         m_gameObjects.push_back(new Object(new LoaderParams(800, 900, 200, 100, "Wall2")));
         m_gameObjects.push_back(new Object(new LoaderParams(1000, 900, 200, 100, "Wall2")));
+        m_gameObjects.push_back(new Object(new LoaderParams(200, 700, 200, 100, "Wall2")));
+        m_gameObjects.push_back(new Object(new LoaderParams(900, 400, 200, 100, "Wall2")));
+        m_gameObjects.push_back(new Object(new LoaderParams(800, 200, 200, 100, "Wall2")));
+        m_gameObjects.push_back(new Object(new LoaderParams(500, 200, 200, 100, "Wall2")));
+        m_gameObjects.push_back(new Object(new LoaderParams(500, 700, 300, 100, "Wall4"))); //가로 긴벽
         m_gameObjects.push_back(new Object(new LoaderParams(200, 200, 200, 200, "SquareWall")));//네모벽
+        m_gameObjects.push_back(new Object(new LoaderParams(600, 400, 200, 200, "SquareWall")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(125, 125, 50, 50, "Item")));//아이템
+        m_gameObjects.push_back(new EatItem(new LoaderParams(125, 225, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(125, 325, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(125, 425, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(125, 525, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(125, 625, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(125, 725, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(125, 825, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(225, 825, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(325, 825, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(425, 825, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(525, 825, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(625, 825, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(725, 825, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(825, 825, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(925, 825, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(1025, 825, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(1025, 725, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(1025, 625, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(1025, 525, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(1025, 325, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(1025, 225, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(1025, 125, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(925, 125, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(825, 125, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(725, 125, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(625, 125, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(525, 125, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(425, 125, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(325, 125, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(225, 125, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(825, 725, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(825, 625, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(825, 525, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(825, 425, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(825, 325, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(925, 325, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(925, 525, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(725, 325, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(725, 225, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(425, 325, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(525, 325, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(625, 325, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(525, 425, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(525, 525, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(525, 625, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(625, 625, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(725, 625, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(425, 625, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(425, 725, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(325, 625, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(325, 525, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(325, 425, 50, 50, "Item")));
+        m_gameObjects.push_back(new EatItem(new LoaderParams(225, 425, 50, 50, "Item")));
+        
+
+
 
         //레벨2 화면
         m_stage2.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "level2background")));//배경

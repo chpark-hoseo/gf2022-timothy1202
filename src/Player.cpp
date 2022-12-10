@@ -6,6 +6,7 @@
 
 float Player::Player_x;
 float Player::Player_y;
+int Player::AteItem = 0;
 Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams) {}
 
 void Player::draw()
@@ -19,8 +20,8 @@ void Player::update()
 {
     Player_x = m_position.getX();
     Player_y = m_position.getY();
+    move(); 
     CheckPosition();
-    move();
     handleInput();
     m_currentFrame = ((SDL_GetTicks() / 100) % 4);
     SDLGameObject::update();
@@ -28,6 +29,7 @@ void Player::update()
 
 void Player::move()
 {
+    //배열 오른쪽으로 한칸
     if (Before_Player_x +100 == m_position.getX())
     {
         Player_Position_x++;
@@ -35,10 +37,14 @@ void Player::move()
         std::cout << Player_Position_x << std::endl;
         std::cout << Before_Player_x << std::endl;
     }
+    //배열 아래로 한칸
     else if (Before_Player_y +100 == m_position.getY()) {
         Player_Position_y++;
         Before_Player_y= m_position.getY();
+        std::cout << Player_Position_y << std::endl;
+        std::cout << Before_Player_y << std::endl;
     }
+    //배열 왼쪽으로 한칸
     else if (Before_Player_x - 100 == m_position.getX())
     {
         Player_Position_x--;
@@ -46,17 +52,39 @@ void Player::move()
         std::cout << Player_Position_x << std::endl;
         std::cout << Before_Player_x << std::endl;
     }
+    //배열 위로 한칸
+    else if (Before_Player_y - 100 == m_position.getY()) {
+        Player_Position_y--;
+        Before_Player_y = m_position.getY();
+        std::cout << Player_Position_y << std::endl;
+        std::cout << Before_Player_y << std::endl;
+    }
 }
 
 void Player::CheckPosition()
 {
     //오른쪽
-          if (map[Player_Position_y][Player_Position_x + 1] == 1)
+          if(map[Player_Position_y][Player_Position_x + 1] == 1)
           {
-             /* MoveNow = 0;
-              if (MoveNow == 1)
-                  return;
-              else*/if (m_velocity.getX() > 0)
+               if (m_velocity.getX() > 0)
+                  m_velocity.setX(0);
+          }
+          //아래
+          if(map[Player_Position_y+1][Player_Position_x ] == 1)
+          { 
+              if (m_velocity.getY() > 0)
+                  m_velocity.setY(0);
+          }
+          //위에
+          if (map[Player_Position_y -1][Player_Position_x] == 1)
+          {
+              if (m_velocity.getY() < 0)
+                  m_velocity.setY(0);
+          }
+          //왼쪽
+          if (map[Player_Position_y][Player_Position_x-1] == 1)
+          {
+              if (m_velocity.getX() < 0) 
                   m_velocity.setX(0);
           }
 }
@@ -64,7 +92,7 @@ void Player::CheckPosition()
 void Player::handleInput()
 {
     if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)) {
-        MoveNow = 1;
+
         m_velocity.setY(0);
         m_currentRow = 0;
         m_velocity.setX(2);
@@ -72,7 +100,7 @@ void Player::handleInput()
 
 
     else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT)) {
-        MoveNow = 1;
+
         m_velocity.setY(0);
         m_velocity.setX(-2);
         m_currentRow = 1;

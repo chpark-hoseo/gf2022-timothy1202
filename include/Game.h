@@ -7,6 +7,7 @@
 #include"Object.h"
 #include"GhostChange.h"
 #include"Play.h"
+#include"EatItem.h"
 
 class Game 
 {

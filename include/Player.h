@@ -5,6 +5,7 @@ class Player : public SDLGameObject
 {
 public:
     void handleInput();
+    static int AteItem ;
     Player(const LoaderParams* pParams);
     virtual void draw();
     virtual void update();
@@ -15,12 +16,12 @@ public:
     //∞‘¿” ∏ [y√‡][x√‡]
     bool map[10][12] = { 1,1,1,1,1,1,1,1,1,1,1,1,
                          1,0,0,0,0,0,0,0,0,0,0,1,
+                         1,0,1,1,0,1,1,0,1,1,0,1,
                          1,0,1,1,0,0,0,0,0,0,0,1,
-                         1,0,1,1,0,0,0,0,0,0,0,1,
-                         1,0,0,0,0,0,0,0,0,0,0,1,
-                         1,0,0,0,0,0,0,0,0,0,0,1,
-                         1,0,0,0,0,0,0,0,0,0,0,1,
-                         1,0,0,0,0,0,0,0,0,0,0,1,
+                         1,0,0,0,1,0,1,1,0,1,1,1,
+                         1,0,1,0,1,0,1,1,0,0,0,1,
+                         1,0,1,0,0,0,0,0,0,1,0,1,
+                         1,0,1,1,0,1,1,1,0,1,0,1,
                          1,0,0,0,0,0,0,0,0,0,0,1,
                          1,1,1,1,1,1,1,1,1,1,1,1 };
 private:
@@ -29,5 +30,4 @@ private:
     float Before_Player_x = 400;
     float Before_Player_y = 200;
     void CheckPosition();
-    bool MoveNow=1;
 };

@@ -30,7 +30,7 @@ void Play::HandleInput()
 	Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
 	if (GamePlay == 0)
 	{
-		if ((vec->getX() > 400 && vec->getX() < 800) && vec->getY() > 500)
+		if ((vec->getX() > 400 && vec->getX() < 800) && (vec->getY() > 500 && vec->getY() < 600))
 		{
 
 			if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {
@@ -38,7 +38,7 @@ void Play::HandleInput()
 				std::cout << "GamePlay=3";
 			}
 		}
-		else if ((vec->getX() > 400 && vec->getX() < 800) && vec->getY() < 400)
+		else if ((vec->getX() > 400 && vec->getX() < 800) && (vec->getY() < 400 && vec->getY() > 300))
 		{
 				if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {
 					GamePlay = 2;
@@ -48,7 +48,7 @@ void Play::HandleInput()
 	}
 	else if (GamePlay == 3)
 	{
-		if ((vec->getX() > 0 && vec->getX() < 423) && vec->getY() < 385)
+		if ((vec->getX() > 0 && vec->getX() < 423) && (vec->getY() < 385&& vec->getY() >200))
 		{
 				if (TheInputHandler::Instance()->getMouseButtonState(LEFT)) {
 					GamePlay = 1;
