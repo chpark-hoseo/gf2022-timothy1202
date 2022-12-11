@@ -274,12 +274,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         m_gameObjects.push_back(new EatItem(new LoaderParams(225, 425, 50, 50, "Item")));
         
         //레벨2 화면
+        m_stage2.push_back(new Player2(new LoaderParams(400, 200, 100, 100, "MainCh")));//팩맨
         m_stage2.push_back(new Object(new LoaderParams(0, 0, 1200, 1000, "level2background")));//배경
-        m_stage2.push_back(new Object(new LoaderParams(0, 100, 100, 200, "Wall1")));//세로벽
-        m_stage2.push_back(new Object(new LoaderParams(0, 300, 100, 200, "Wall1")));
+        m_stage2.push_back(new Object(new LoaderParams(0, 100, 100, 200, "Wall1")));//세로벽 
+        m_stage2.push_back(new Object(new LoaderParams(0, 500, 100, 200, "Wall1")));
         m_stage2.push_back(new Object(new LoaderParams(0, 700, 100, 200, "Wall1")));
         m_stage2.push_back(new Object(new LoaderParams(1100, 100, 100, 200, "Wall1")));
-        m_stage2.push_back(new Object(new LoaderParams(1100, 300, 100, 200, "Wall1")));
+        m_stage2.push_back(new Object(new LoaderParams(1100, 500, 100, 200, "Wall1")));
         m_stage2.push_back(new Object(new LoaderParams(1100, 700, 100, 200, "Wall1")));
          m_stage2.push_back(new Object(new LoaderParams(0, 0, 200, 100, "Wall2")));//가로벽
          m_stage2.push_back(new Object(new LoaderParams(200, 0, 200, 100, "Wall2")));
@@ -293,7 +294,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
          m_stage2.push_back(new Object(new LoaderParams(600, 900, 200, 100, "Wall2")));
          m_stage2.push_back(new Object(new LoaderParams(800, 900, 200, 100, "Wall2")));
          m_stage2.push_back(new Object(new LoaderParams(1000, 900, 200, 100, "Wall2")));
-         m_stage2.push_back(new Object(new LoaderParams(100, 400, 200, 100, "Wall2")));
 
     }
 

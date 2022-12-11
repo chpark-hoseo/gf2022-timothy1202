@@ -152,6 +152,7 @@
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\Play.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Player2.cpp" />
     <ClCompile Include="src\SDLGameObject.cpp" />
     <ClCompile Include="src\TextureManager.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="include\Object.h" />
     <ClInclude Include="include\Play.h" />
     <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\Player2.h" />
     <ClInclude Include="include\SDLGameObject.h" />
     <ClInclude Include="include\TextureManager.h" />
     <ClInclude Include="include\Game.h" />

@@ -9,5 +9,5 @@ public:
     virtual void update();
     virtual void clean();
 private:
-    bool BallDraw = 1;
+    int BallDraw = 1;
 }; 

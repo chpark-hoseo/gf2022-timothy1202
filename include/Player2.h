@@ -1,20 +1,20 @@
 #pragma once
 #include "SDLGameObject.h"
 
-class Player : public SDLGameObject
+class Player2 : public SDLGameObject
 {
 public:
-    void handleInput();
-    static int AteItem ;
-    Player(const LoaderParams* pParams);
+    void handleInput2();
+    static int AteItem2;
+    Player2(const LoaderParams* pParams);
     virtual void draw();
     virtual void update();
     virtual void clean();
     void move();
-    static float Player_x;
-    static float Player_y;
+    static float Player2_x;
+    static float Player2_y;
     //∞‘¿” ∏ [y√‡][x√‡]
-    bool map[10][12] = { 1,1,1,1,1,1,1,1,1,1,1,1,
+    bool map2[10][12] = { 1,1,1,1,1,1,1,1,1,1,1,1,
                          1,0,0,0,0,0,0,0,0,0,0,1,
                          1,0,1,1,0,1,1,0,1,1,0,1,
                          1,0,1,1,0,0,0,0,0,0,0,1,
@@ -25,10 +25,9 @@ public:
                          1,0,0,0,0,0,0,0,0,0,0,1,
                          1,1,1,1,1,1,1,1,1,1,1,1 };
 private:
-    int Player_Position_x=4;
-    int Player_Position_y=2;
-    float Before_Player_x = 400;
-    float Before_Player_y = 200;
-    void CheckPosition();
-    void GameClear();
+    int Player2_Position_x = 4;
+    int Player2_Position_y = 2;
+    float Before_Player2_x = 400;
+    float Before_Player2_y = 200;
+    void CheckPosition2();
 };

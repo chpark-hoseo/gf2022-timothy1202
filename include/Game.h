@@ -8,6 +8,7 @@
 #include"GhostChange.h"
 #include"Play.h"
 #include"EatItem.h"
+#include"Player2.h"
 
 class Game 
 {

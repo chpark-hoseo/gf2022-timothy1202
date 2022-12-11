@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include "InputHandler.h"
 #include"iostream"
+#include"Play.h"
 
 
 float Player::Player_x;
@@ -23,6 +24,7 @@ void Player::update()
     move(); 
     CheckPosition();
     handleInput();
+    GameClear();
     m_currentFrame = ((SDL_GetTicks() / 100) % 4);
     SDLGameObject::update();
 }
@@ -117,5 +119,12 @@ void Player::handleInput()
         m_velocity.setY(2);
         m_currentRow = 3;
 
+    }
+}
+
+void Player::GameClear() {
+    if (AteItem == 54)
+    {
+        Play::GamePlay = 4;
     }
 }
